@@ -1,0 +1,26 @@
+<launch>
+
+  <node name="teensy_start" pkg="rosserial_python" type="serial_node.py" args="_port:=/dev/ttyACM0 _baud:=115200"/>
+  <node name="car_driver" pkg="uva_car" type="talker.py"/>
+  <!--<node name="camera_node" pkg="openni2_camera" type="openni2_camera_node" />-->
+
+  #Uncomment if you need to view the depth image
+  <!--
+  <node name="view_depth_image" pkg="image_view" type="image_view" args="image:=/depth/image"/>
+  -->
+
+  <node name="lidar_node" pkg="urg_node" type="urg_node" args="_ip_address:=192.168.8.203" />
+
+  #IMU node will be added here 
+  <node pkg="razor_imu_9dof" type="imu_node.py" name="imu_node">
+    <rosparam file="$(find razor_imu_9dof)/config/my_razor.yaml" command="load"/>
+  </node>
+
+  <node name="kalman" pkg="uva_car" type="kalman.py"/>
+  #some teensy related node here...
+
+  <node name="control" pkg="uva_car" type="control2.py"/>
+  <node name="dist_finder" pkg="uva_car" type="dist_finder2.py"/>
+  <node name="velocity" pkg="uva_car" type="velocity.py"/>
+
+</launch>
