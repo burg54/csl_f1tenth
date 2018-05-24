@@ -4,4 +4,4 @@
    Nothing to report yet
 
 ## Authors
-	Cody Fleming (cf5eg@virginia.edu) [[http://faculty.virginia.edu/fleming/][website]] 
+	Cody Fleming (cf5eg@virginia.edu) [website](http://faculty.virginia.edu/fleming/)
